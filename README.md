@@ -1,1 +1,1 @@
-# sdo_elixir
+# sdo_phoenix
