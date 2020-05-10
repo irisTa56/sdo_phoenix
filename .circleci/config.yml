@@ -22,7 +22,9 @@ jobs:
 
       - run:
           name: Setup environment
-          command: mix local.hex --force
+          command: |
+            mix local.hex --force
+            mix local.rebar --force
 
       - run:
           name: Test application
