@@ -5,7 +5,7 @@
 # is restricted to this project.
 
 # General application configuration
-import Mix.Config
+import Config
 
 config :sdo_phoenix,
   ecto_repos: [SdoPhoenix.Repo]

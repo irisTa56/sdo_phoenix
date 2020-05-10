@@ -19,6 +19,12 @@ defmodule SdoPhoenixWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/", SdoPhoenixWeb do
+    pipe_through :api
+
+    resources "/jsons", JsonController, only: [:index, :create]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", SdoPhoenixWeb do
   #   pipe_through :api
