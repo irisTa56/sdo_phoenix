@@ -39,3 +39,4 @@ config :sdo_phoenix, SdoPhoenixWeb.Endpoint,
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.
+config :sdo_phoenix, SdoPhoenixWeb.Endpoint, server: true
