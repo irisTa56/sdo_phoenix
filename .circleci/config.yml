@@ -12,11 +12,17 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:latest
+        environment:
+          POSTGRES_PASSWORD: postgres
 
     working_directory: ~/repo
     steps:
       - checkout
       - setup_remote_docker
+
+      - run:
+          name: Setup environment
+          command: mix local.hex --force
 
       - run:
           name: Test application
