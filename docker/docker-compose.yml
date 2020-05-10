@@ -1,0 +1,15 @@
+version: "3"
+services:
+  web:
+    build: ..
+    ports:
+      - "4000:4000"
+    links:
+      - postgres
+    environment:
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      DATABASE_URL: ecto://postgres:${POSTGRES_PASSWORD}@postgres/postgres
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
