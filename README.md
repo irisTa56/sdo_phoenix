@@ -10,8 +10,9 @@ $ docker run -it --rm -p 4000:4000 \
 ```
 
 ```shell
-$ curl -X POST -s \
+$ curl -X GET http://localhost:4000/jsons
+$ curl -X POST \
   -H 'content-type: application/json' \
   -d '{"foo":"bar"}' \
-  http://localhost:4000/json
+  http://localhost:4000/jsons
 ```
