@@ -28,19 +28,18 @@ jobs:
             MIX_ENV=test mix do deps.get, ecto.create, test
 
       - run:
-          name: Run application in background
-          command: cd docker; docker-compose up -d
-
-      - run:
           name: ZAP baseline test of application
           # Only fail on error code 1, which indicates at least one FAIL was found;
           # error codes 2 & 3 indicate WARN or other, and should not break the run.
           command: |
             (
+              cd docker && docker-compose up -d
+            )
+            (
               docker pull owasp/zap2docker-weekly && \
               docker run -t owasp/zap2docker-weekly \
                 zap-baseline.py -t http://host.docker.internal:4000/ || \
-              if [ $? -ne 1 ]; then exit 0; else exit 1; fi;
+              if [ $? -ne 1 ]; then exit 0; else exit 1; fi
             )
 
       - run:
