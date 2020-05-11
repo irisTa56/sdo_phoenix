@@ -20,12 +20,12 @@ jobs:
       - checkout
       - setup_remote_docker
 
-      # - run:
-      #     name: Test application
-      #     command: |
-      #       mix local.hex --force
-      #       mix local.rebar --force
-      #       MIX_ENV=test mix do deps.get, ecto.create, test
+      - run:
+          name: Test application
+          command: |
+            mix local.hex --force
+            mix local.rebar --force
+            MIX_ENV=test mix do deps.get, ecto.create, test
 
       - run:
           name: Run application using Docker compose
