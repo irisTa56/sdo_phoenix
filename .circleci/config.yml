@@ -29,8 +29,7 @@ jobs:
 
       - run:
           name: Run application in background
-          command: cd docker; docker-compose up
-          background: true
+          command: cd docker; docker-compose up -d
 
       - run:
           name: ZAP baseline test of application
@@ -48,6 +47,7 @@ jobs:
           name: Build and push Docker image
           command: |
             if [ "$CIRCLE_BRANCH" == "master" ]; then
+              docker build -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME .
               echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
               docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME
             fi
