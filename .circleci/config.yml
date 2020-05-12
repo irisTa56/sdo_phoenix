@@ -37,8 +37,9 @@ jobs:
           # error codes 2 & 3 indicate WARN or other, and should not break the run.
           command: |
             (
-              docker run -t -v $(pwd)/test/:/zap/wrk/:rw \
-                --network docker_sdo-phenix owasp/zap2docker-stable pwd || \
+              docker run -t -v $(pwd)/test:/zap/wrk \
+                --network docker_sdo-phenix owasp/zap2docker-stable \
+                zap-baseline.py -c wrk/zap-baseline.conf -t http://sdo-phenix:4000/ || \
               if [ $? == 2 ] || [ $? == 3 ]; then exit 0; fi
             )
 
