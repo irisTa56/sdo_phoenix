@@ -1,5 +1,5 @@
-defmodule SdoPhoenixWeb.Router do
-  use SdoPhoenixWeb, :router
+defmodule SdoPhoenix.Web.Router do
+  use SdoPhoenix.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,20 +13,15 @@ defmodule SdoPhoenixWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", SdoPhoenixWeb do
+  scope "/", SdoPhoenix.Web do
     pipe_through :browser
 
     get "/", PageController, :index
-  end
-
-  scope "/", SdoPhoenixWeb do
-    pipe_through :api
-
-    resources "/jsons", JsonController, only: [:index, :create]
+    resources "/users", UserController
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", SdoPhoenixWeb do
+  # scope "/api", SdoPhoenix.Web do
   #   pipe_through :api
   # end
 
@@ -42,7 +37,7 @@ defmodule SdoPhoenixWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: SdoPhoenixWeb.Telemetry
+      live_dashboard "/dashboard", metrics: SdoPhoenix.Web.Telemetry
     end
   end
 end

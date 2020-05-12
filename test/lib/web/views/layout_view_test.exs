@@ -1,5 +1,5 @@
-defmodule SdoPhoenixWeb.LayoutViewTest do
-  use SdoPhoenixWeb.ConnCase, async: true
+defmodule SdoPhoenix.Web.LayoutViewTest do
+  use SdoPhoenix.Web.ConnCase, async: true
 
   # When testing helpers, you may want to import Phoenix.HTML and
   # use functions such as safe_to_string() to convert the helper

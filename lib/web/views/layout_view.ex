@@ -1,3 +1,3 @@
-defmodule SdoPhoenixWeb.LayoutView do
-  use SdoPhoenixWeb, :view
+defmodule SdoPhoenix.Web.LayoutView do
+  use SdoPhoenix.Web, :view
 end

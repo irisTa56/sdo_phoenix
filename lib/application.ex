@@ -10,11 +10,11 @@ defmodule SdoPhoenix.Application do
       # Start the Ecto repository
       SdoPhoenix.Repo,
       # Start the Telemetry supervisor
-      SdoPhoenixWeb.Telemetry,
+      SdoPhoenix.Web.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: SdoPhoenix.PubSub},
       # Start the Endpoint (http/https)
-      SdoPhoenixWeb.Endpoint
+      SdoPhoenix.Web.Endpoint
       # Start a worker by calling: SdoPhoenix.Worker.start_link(arg)
       # {SdoPhoenix.Worker, arg}
     ]
@@ -28,7 +28,7 @@ defmodule SdoPhoenix.Application do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    SdoPhoenixWeb.Endpoint.config_change(changed, removed)
+    SdoPhoenix.Web.Endpoint.config_change(changed, removed)
     :ok
   end
 end

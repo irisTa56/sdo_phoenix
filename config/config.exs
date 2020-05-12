@@ -11,10 +11,10 @@ config :sdo_phoenix,
   ecto_repos: [SdoPhoenix.Repo]
 
 # Configures the endpoint
-config :sdo_phoenix, SdoPhoenixWeb.Endpoint,
+config :sdo_phoenix, SdoPhoenix.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "rqgzURn/Q5CqeptHG5juttRlQZAkhSEV5Pi/ojAO+CwEGUxUqLVJh+k/Q+mE7U3D",
-  render_errors: [view: SdoPhoenixWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [view: SdoPhoenix.Web.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: SdoPhoenix.PubSub,
   live_view: [signing_salt: "qaubt4i8"]
 

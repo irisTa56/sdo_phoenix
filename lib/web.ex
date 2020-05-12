@@ -1,12 +1,12 @@
-defmodule SdoPhoenixWeb do
+defmodule SdoPhoenix.Web do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use SdoPhoenixWeb, :controller
-      use SdoPhoenixWeb, :view
+      use SdoPhoenix.Web, :controller
+      use SdoPhoenix.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,11 +19,11 @@ defmodule SdoPhoenixWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: SdoPhoenixWeb
+      use Phoenix.Controller, namespace: SdoPhoenix.Web
 
       import Plug.Conn
-      import SdoPhoenixWeb.Gettext
-      alias SdoPhoenixWeb.Router.Helpers, as: Routes
+      import SdoPhoenix.Web.Gettext
+      alias SdoPhoenix.Web.Router.Helpers, as: Routes
     end
   end
 
@@ -31,7 +31,7 @@ defmodule SdoPhoenixWeb do
     quote do
       use Phoenix.View,
         root: "lib/web/templates",
-        namespace: SdoPhoenixWeb
+        namespace: SdoPhoenix.Web
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
@@ -53,7 +53,7 @@ defmodule SdoPhoenixWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import SdoPhoenixWeb.Gettext
+      import SdoPhoenix.Web.Gettext
     end
   end
 
@@ -65,9 +65,9 @@ defmodule SdoPhoenixWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import SdoPhoenixWeb.ErrorHelpers
-      import SdoPhoenixWeb.Gettext
-      alias SdoPhoenixWeb.Router.Helpers, as: Routes
+      import SdoPhoenix.Web.ErrorHelpers
+      import SdoPhoenix.Web.Gettext
+      alias SdoPhoenix.Web.Router.Helpers, as: Routes
     end
   end
 

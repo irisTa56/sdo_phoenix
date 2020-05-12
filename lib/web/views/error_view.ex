@@ -1,5 +1,5 @@
-defmodule SdoPhoenixWeb.ErrorView do
-  use SdoPhoenixWeb, :view
+defmodule SdoPhoenix.Web.ErrorView do
+  use SdoPhoenix.Web, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

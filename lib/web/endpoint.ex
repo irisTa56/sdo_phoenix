@@ -1,4 +1,4 @@
-defmodule SdoPhoenixWeb.Endpoint do
+defmodule SdoPhoenix.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :sdo_phoenix
 
   # The session will be stored in the cookie and signed,
@@ -10,7 +10,7 @@ defmodule SdoPhoenixWeb.Endpoint do
     signing_salt: "6zHqErPk"
   ]
 
-  socket "/socket", SdoPhoenixWeb.UserSocket,
+  socket "/socket", SdoPhoenix.Web.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -50,5 +50,5 @@ defmodule SdoPhoenixWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug SdoPhoenixWeb.Router
+  plug SdoPhoenix.Web.Router
 end

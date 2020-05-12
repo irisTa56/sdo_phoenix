@@ -1,5 +1,5 @@
-defmodule SdoPhoenixWeb.PageControllerTest do
-  use SdoPhoenixWeb.ConnCase
+defmodule SdoPhoenix.Web.PageControllerTest do
+  use SdoPhoenix.Web.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
