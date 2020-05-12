@@ -38,7 +38,7 @@ jobs:
           command: |
             (
               docker run -t -v $(pwd)/test/:/zap/wrk/:rw \
-                --network docker_sdo-phenix owasp/zap2docker-stable ls || \
+                --network docker_sdo-phenix owasp/zap2docker-stable pwd || \
               if [ $? == 2 ] || [ $? == 3 ]; then exit 0; fi
             )
 
