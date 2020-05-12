@@ -29,7 +29,10 @@ jobs:
 
       - run:
           name: Run application using Docker compose
-          command: cd docker && docker-compose up -d
+          command: |
+            (
+              cd docker && docker-compose up -d
+            )
 
       - run:
           name: ZAP baseline test of application
@@ -37,7 +40,7 @@ jobs:
           # error codes 2 & 3 indicate WARN or other, and should not break the run.
           command: |
             (
-              docker pull owasp/zap2docker-weekly && \
+              pwd && \
               docker run -t -v $(pwd)/test:/zap/wrk/:rw --network docker_sdo-phenix \
                 owasp/zap2docker-stable zap-baseline.py -c zap-baseline.conf -t http://sdo-phenix:4000/ || \
               if [ $? -ne 1 ]; then exit 0; else exit 1; fi
