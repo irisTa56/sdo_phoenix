@@ -41,7 +41,7 @@ jobs:
             docker run -t --network docker_sdo-phenix \
               --volumes-from volume owasp/zap2docker-stable \
               zap-baseline.py -c zap-baseline.conf -t http://sdo-phenix:4000/ \
-              || if [ $? -eq 2 ] || [ $? -eq 3 ]; then exit 0; fi
+              || if [ $? -eq 2 ] || [ $? -eq 3 ]; then exit 0; else exit 1; fi
 
       - run:
           name: Build and push Docker image
