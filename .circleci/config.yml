@@ -36,17 +36,17 @@ jobs:
           # Only fail on error code 1, which indicates at least one FAIL was found;
           # error codes 2 & 3 indicate WARN or other, and should not break the run.
           command: |
-            docker create -v /vol --name volume alpine /bin/true
-            docker cp $(pwd)/test/zap-baseline.conf volume:/vol
+            docker create -v /zap/wrk --name volume alpine /bin/true
+            docker cp $(pwd)/test/zap-baseline.conf volume:/zap/wrk
             docker run -t --network docker_sdo-phenix \
               --volumes-from volume owasp/zap2docker-stable \
-              zap-baseline.py -c /vol/zap-baseline.conf -t http://sdo-phenix:4000/
-            if [ $? == 2 ] || [ $? == 3 ]; then exit 0; fi
+              zap-baseline.py -c zap-baseline.conf -t http://sdo-phenix:4000/
+            if [ $? -eq 2 ] || [ $? -eq 3 ]; then exit 0; fi
 
       - run:
           name: Build and push Docker image
           command: |
-            if [ "$CIRCLE_BRANCH" == "master" ]; then
+            if [ "$CIRCLE_BRANCH" = "master" ]; then
               docker build -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME .
               echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
               docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME
