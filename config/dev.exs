@@ -16,7 +16,13 @@ config :sdo_phoenix, SdoPhoenix.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :sdo_phoenix, SdoPhoenix.Web.Endpoint,
-  http: [port: 4000],
+  http: [
+    port: 4000,
+    stream_handlers: [
+      SdoPhoenix.Web.Endpoint.CspHandler,
+      :cowboy_stream_h,
+    ],
+  ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,

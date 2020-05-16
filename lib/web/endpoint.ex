@@ -51,4 +51,39 @@ defmodule SdoPhoenix.Web.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug SdoPhoenix.Web.Router
+
+  defmodule CspHandler do
+    @behaviour :cowboy_stream
+
+    @csp_name "content-security-policy"
+    @csp_value "default-src 'self';"
+
+    def info(id, {:response, status, headers, body}, state) do
+      csp_already_set? =
+        Map.keys(headers) |> Enum.any?(&(String.downcase(&1) == @csp_name))
+      new_headers =
+        if csp_already_set?, do: headers, else: Map.put(headers, @csp_name, @csp_value)
+      :cowboy_stream.info(id, {:response, status, new_headers, body}, state)
+    end
+
+    def info(id, info, state) do
+      :cowboy_stream.info(id, info, state)
+    end
+
+    def init(id, req, opts) do
+      :cowboy_stream.init(id, req, opts)
+    end
+
+    def data(id, is_fin, info, state) do
+      :cowboy_stream.data(id, is_fin, info, state)
+    end
+
+    def early_error(id, reason, partial_req, resp, opts) do
+      :cowboy_stream.early_error(id, reason, partial_req, resp, opts)
+    end
+
+    def terminate(id, reason, state) do
+      :cowboy_stream.terminate(id, reason, state)
+    end
+  end
 end

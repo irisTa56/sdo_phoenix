@@ -26,7 +26,11 @@ secret_key_base =
 config :sdo_phoenix, SdoPhoenix.Web.Endpoint,
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
-    transport_options: [socket_opts: [:inet6]]
+    transport_options: [socket_opts: [:inet6]],
+    stream_handlers: [
+      SdoPhoenix.Web.Endpoint.CspHandler,
+      :cowboy_stream_h,
+    ],
   ],
   secret_key_base: secret_key_base
 
