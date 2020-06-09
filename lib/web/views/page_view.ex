@@ -1,3 +1,3 @@
-defmodule SdoPhoenixWeb.PageView do
-  use SdoPhoenixWeb, :view
+defmodule SdoPhoenix.Web.PageView do
+  use SdoPhoenix.Web, :view
 end

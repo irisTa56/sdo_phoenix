@@ -1,14 +1,10 @@
 # sdo_phoenix
 
-## Testing container locally
+## ZAP baseline test
 
 ```shell
-$ cd docker
-$ docker-compose up -d
-$ curl -X GET http://localhost:4000/jsons
-$ curl -X POST \
-  -H 'content-type: application/json' \
-  -d '{"foo":"bar"}' \
-  http://localhost:4000/jsons
-$ docker-compose down
+$ (cd docker && docker-compose up -d --build) \
+ && docker run -it --rm -v $(pwd)/test:/zap/wrk \
+      --network docker_sdo-phenix owasp/zap2docker-stable \
+      zap-baseline.py -c zap-baseline.conf -t http://sdo-phenix:4000/users/
 ```

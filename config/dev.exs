@@ -15,8 +15,14 @@ config :sdo_phoenix, SdoPhoenix.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :sdo_phoenix, SdoPhoenixWeb.Endpoint,
-  http: [port: 4000],
+config :sdo_phoenix, SdoPhoenix.Web.Endpoint,
+  http: [
+    port: 4000,
+    stream_handlers: [
+      SdoPhoenix.Web.Endpoint.SecurityHeaderHandler,
+      :cowboy_stream_h,
+    ],
+  ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -55,7 +61,7 @@ config :sdo_phoenix, SdoPhoenixWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :sdo_phoenix, SdoPhoenixWeb.Endpoint,
+config :sdo_phoenix, SdoPhoenix.Web.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",

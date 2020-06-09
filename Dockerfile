@@ -45,5 +45,10 @@ COPY --from=build --chown=nobody:nobody /app/_build/prod/rel/sdo_phoenix ./
 
 ENV HOME=/app
 
+RUN echo '#!/bin/sh' > cmd.sh \
+ && echo 'bin/sdo_phoenix eval SdoPhoenix.Release.migrate' >> cmd.sh \
+ && echo 'bin/sdo_phoenix start' >> cmd.sh \
+ && chmod 744 cmd.sh
+
 EXPOSE 4000
-CMD ["bin/sdo_phoenix", "start"]
+CMD ./cmd.sh

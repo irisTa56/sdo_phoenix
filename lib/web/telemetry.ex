@@ -1,4 +1,4 @@
-defmodule SdoPhoenixWeb.Telemetry do
+defmodule SdoPhoenix.Web.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -47,7 +47,7 @@ defmodule SdoPhoenixWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {SdoPhoenixWeb, :count_users, []}
+      # {SdoPhoenix.Web, :count_users, []}
     ]
   end
 end

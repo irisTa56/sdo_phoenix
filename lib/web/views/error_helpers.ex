@@ -1,4 +1,4 @@
-defmodule SdoPhoenixWeb.ErrorHelpers do
+defmodule SdoPhoenix.Web.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -39,9 +39,9 @@ defmodule SdoPhoenixWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(SdoPhoenixWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(SdoPhoenix.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(SdoPhoenixWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(SdoPhoenix.Web.Gettext, "errors", msg, opts)
     end
   end
 end
