@@ -52,17 +52,20 @@ defmodule SdoPhoenix.Web.Endpoint do
   plug Plug.Session, @session_options
   plug SdoPhoenix.Web.Router
 
-  defmodule CspHandler do
+  defmodule SecurityHeaderHandler do
     @behaviour :cowboy_stream
 
     @csp_name "content-security-policy"
     @csp_value "default-src 'self';"
 
+    @xcto_name "x-content-type-options"
+    @xcto_value "nosniff"
+
     def info(id, {:response, status, headers, body}, state) do
-      csp_already_set? =
-        Map.keys(headers) |> Enum.any?(&(String.downcase(&1) == @csp_name))
       new_headers =
-        if csp_already_set?, do: headers, else: Map.put(headers, @csp_name, @csp_value)
+        headers
+        Map.put_new(@csp_name, @csp_value)
+        Map.put_new(@xcto_name, @xcto_value)
       :cowboy_stream.info(id, {:response, status, new_headers, body}, state)
     end
 

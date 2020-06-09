@@ -19,7 +19,7 @@ config :sdo_phoenix, SdoPhoenix.Web.Endpoint,
   http: [
     port: 4000,
     stream_handlers: [
-      SdoPhoenix.Web.Endpoint.CspHandler,
+      SdoPhoenix.Web.Endpoint.SecurityHeaderHandler,
       :cowboy_stream_h,
     ],
   ],
