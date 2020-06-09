@@ -64,8 +64,8 @@ defmodule SdoPhoenix.Web.Endpoint do
     def info(id, {:response, status, headers, body}, state) do
       new_headers =
         headers
-        Map.put_new(@csp_name, @csp_value)
-        Map.put_new(@xcto_name, @xcto_value)
+        |> Map.put_new(@csp_name, @csp_value)
+        |> Map.put_new(@xcto_name, @xcto_value)
       :cowboy_stream.info(id, {:response, status, new_headers, body}, state)
     end
 
